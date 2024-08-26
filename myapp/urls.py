@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import (UserProfileViewSet, CountryViewSet, DirectorViewSet, ActorViewSet, JanreViewSet, MovieViewSet ,RatingViewSet, CommentViewSet
-                    )
+from .views import (
+    UserProfileViewSet, CountryViewSet, DirectorViewSet, ActorViewSet,
+    JanreViewSet, MovieViewSet, RatingViewSet, CommentViewSet
+)
 
 urlpatterns = [
     path('users/', UserProfileViewSet.as_view({'get': 'list', 'post': 'create'}), name='user_list'),
@@ -26,5 +28,4 @@ urlpatterns = [
 
     path('comments/', CommentViewSet.as_view({'get': 'list', 'post': 'create'}), name='comment_list'),
     path('comments/<int:pk>/', CommentViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='comment_detail'),
-
 ]

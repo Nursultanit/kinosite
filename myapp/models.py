@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 
+
 class UserProfile(models.Model):
     nickname = models.CharField(max_length=255)
     email = models.EmailField(unique=True)

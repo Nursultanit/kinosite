@@ -1,50 +1,18 @@
-from django.shortcuts import render
+from .models import (UserProfile, Country, Director, Actor, Janre, Movie, Rating, Comment,)
+from .serializers import (UserProfileSerializer, CountrySerializer, DirectorSerializer, ActorSerializer, JanreSerializer, MovieSerializer, RatingSerializer, CommentSerializer)
 from rest_framework import viewsets
-from .models import (
-    UserProfile,
-    Country,
-    Director,
-    Actor,
-    Janre,
-    Movie,
-    Rating,
-    Comment
-)
-from .serializers import (
-    UserProfileSerializer,
-    CountrySerializer,
-    DirectorSerializer,
-    ActorSerializer,
-    JanreSerializer,
-    MovieSerializer,
-    RatingSerializer,
-    CommentSerializer
-)
-
-from django.shortcuts import render
-from .models import Movie
-
-def home_view(request):
-    movies = Movie.objects.all()
-    return render(request, 'home.html', {'movies': movies})
-
-from django.shortcuts import render, get_object_or_404
-from .models import Movie
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
-def index(request):
-    return render(request, 'index.html')
+class Home(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
-def movie_list(request):
-    movies = Movie.objects.all()
-    return render(request, 'movie_list.html', {'movies': movies})
-
-def movie_detail(request, id):
-    movie = get_object_or_404(Movie, id=id)
-    return render(request, 'movie_detail.html', {'movie': movie})
-
-
-
+    def get(self, request):
+        return Response({"message": "Welcome to the Home API"})
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
@@ -77,3 +45,7 @@ class RatingViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+
+
