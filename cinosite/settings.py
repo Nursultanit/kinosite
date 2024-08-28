@@ -91,6 +91,8 @@ DATABASES = {
 }
 
 
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -133,10 +135,12 @@ REST_FRAMEWORK = {
 
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
-MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 
 SWAGGER_SETTINGS = {

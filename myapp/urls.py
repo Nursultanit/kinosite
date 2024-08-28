@@ -1,8 +1,5 @@
 from django.urls import path
-from .views import (
-    UserProfileViewSet, CountryViewSet, DirectorViewSet, ActorViewSet,
-    JanreViewSet, MovieViewSet, RatingViewSet, CommentViewSet
-)
+from .views import *
 
 urlpatterns = [
     path('users/', UserProfileViewSet.as_view({'get': 'list', 'post': 'create'}), name='user_list'),
